@@ -18,6 +18,9 @@ package com.google.android.gms.example.bannerexample;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.admanager.AdManagerAdRequest;
@@ -57,21 +60,28 @@ public class MyActivity extends AppCompatActivity {
         // Log the Mobile Ads SDK version.
         Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion());
 
-        // LiveRamp: configure adapter before calling init
-        configureLiveRamp();
+        Button button = (Button) findViewById(R.id.initGMA);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // LiveRamp: configure adapter before calling init
+                configureLiveRamp();
 
-        // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(
-            this,
-            new OnInitializationCompleteListener() {
-              @Override
-              public void onInitializationComplete(InitializationStatus status) {
-                  // Create an ad request after initialization
-                  AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
-                  adView.loadAd(adRequest);
+                // Initialize the Mobile Ads SDK.
+                MobileAds.initialize(
+                        getApplicationContext(),
+                        new OnInitializationCompleteListener() {
+                            @Override
+                            public void onInitializationComplete(InitializationStatus status) {
+                                // Create an ad request after initialization
+                                AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+                                adView.loadAd(adRequest);
+                            }
+                        });
 
-              }
-            });
+            }
+        });
+
 
     }
 

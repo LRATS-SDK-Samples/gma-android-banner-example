@@ -14,7 +14,7 @@
         <!-- TODO: Put your own app id-->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-XXX"/>
+            android:value="ca-app-pub-2063624914407440~3950898237"/>
 
         <activity
             android:exported="true"
